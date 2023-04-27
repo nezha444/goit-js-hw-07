@@ -19,11 +19,9 @@ const addGalleryItems = galleryItems.map(objItem =>{
 
 
 gallery.insertAdjacentHTML("beforeend", addGalleryItems)
-
-
 gallery.addEventListener('click', openOriginalImg)
 
-const openOriginalImg = (event) => {
+function openOriginalImg (event){
     console.log("Greate picture created!")
     const originalImg = basicLightbox.create(`<img width="1400" height="900" src="${event.target.dataset.source}">`)
     originalImg.show()
@@ -37,4 +35,3 @@ const openOriginalImg = (event) => {
         }
     }
 }
-
