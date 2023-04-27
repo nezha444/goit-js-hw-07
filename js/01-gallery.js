@@ -19,6 +19,8 @@ const addGalleryItems = galleryItems.map(objItem =>{
 
 
 gallery.insertAdjacentHTML("beforeend", addGalleryItems)
+
+
 gallery.addEventListener('click', openOriginalImg)
 
 const openOriginalImg = (event) => {
@@ -35,3 +37,4 @@ const openOriginalImg = (event) => {
         }
     }
 }
+
