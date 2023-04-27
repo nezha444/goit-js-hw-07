@@ -1,31 +1,37 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
-
-// import * as basicLightbox from 'basiclightbox'
-
-// const instance = basicLightbox.create(`
-//     <img src="assets/images/image.png" width="800" height="600">
-// `)
-
-// instance.show()
-
 
 const gallery = document.querySelector('.gallery')
-const galleryItem = document.querySelectorAll('.gallery__item')
-const galleryLink = document.querySelectorAll('.gallery__link')
-const galleryImage = document.querySelectorAll('.gallery__image')
+
+const addGalleryItems = galleryItems.map(objItem =>{  
+    const string = `
+    <li class="gallery__item">
+        <a class="gallery__link" href="large-image.jpg">
+            <img 
+            onclick="event.preventDefault()" 
+            class="gallery__image" 
+            src=${objItem.preview} 
+            data-source=${objItem.original} 
+            alt=${objItem.description}/>
+        </a>
+    </li>`
+    return string
+}).join('')
 
 
-for (let i = 0; i < galleryItems.length; i++) {
-    
-    function addValueInGallery(){
+gallery.insertAdjacentHTML("beforeend", addGalleryItems)
+gallery.addEventListener('click', openOriginalImg)
 
+const openOriginalImg = (event) => {
+    console.log("Greate picture created!")
+    const originalImg = basicLightbox.create(`<img width="1400" height="900" src="${event.target.dataset.source}">`)
+    originalImg.show()
 
-
+    gallery.addEventListener('keydown', keyEscape)
+    function keyEscape (pressedKey){
+        if (pressedKey.key === 'Escape'){
+            console.log("Escape is pressed")
+            originalImg.close()
+            gallery.removeEventListener('keydown', keyEscape)
+        }
     }
-    
 }
-
-
-
-console.log(galleryItems);
